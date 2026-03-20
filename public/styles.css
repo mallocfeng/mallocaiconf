@@ -49,6 +49,13 @@ body {
   margin-bottom: 28px;
 }
 
+.hero-topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
 .eyebrow {
   margin: 0;
   font-family: "Azeret Mono", monospace;
@@ -56,6 +63,41 @@ body {
   text-transform: uppercase;
   color: var(--accent-deep);
   font-size: 12px;
+}
+
+.locale-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 999px;
+  background: rgba(255, 249, 242, 0.78);
+  border: 1px solid rgba(29, 20, 15, 0.08);
+  box-shadow: 0 12px 30px rgba(44, 29, 20, 0.08);
+}
+
+.locale-button {
+  border: none;
+  border-radius: 999px;
+  padding: 10px 14px;
+  min-width: 72px;
+  font-family: "Azeret Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: background 160ms ease, color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+}
+
+.locale-button:hover {
+  transform: translateY(-1px);
+}
+
+.locale-button.active {
+  background: linear-gradient(135deg, var(--accent), #ec8754);
+  color: #fffaf2;
+  box-shadow: 0 10px 22px rgba(209, 77, 42, 0.18);
 }
 
 .hero h1 {
@@ -617,6 +659,11 @@ select:disabled {
   .shell {
     width: min(100vw - 24px, 1440px);
     padding-top: 24px;
+  }
+
+  .hero-topline {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .grid.two,
