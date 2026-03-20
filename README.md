@@ -49,6 +49,10 @@
 
 改完后重启 OpenClaw Gateway。
 
+```bash
+openclaw gateway restart
+```
+
 ## 启动
 
 先进入项目目录：
@@ -111,4 +115,7 @@ tail -f /tmp/mallocaiconf.log
 
 - 模型使用的是你 OpenClaw 里对应 agent 自己的模型配置
 - 这个项目不会安装新的 OpenClaw
+- 这个项目不会修改你的任何 OpenClaw 配置
 - 这个项目不负责启动 Gateway，只负责连接你已经在跑的 Gateway
+- 所有调用都在本机 `localhost` 上完成，不会额外开放远程访问
+- 这个项目不会申请任何额外权限，只使用你已经配置好的 Gateway WS 地址和 token
