@@ -4,6 +4,12 @@
 
 只适合已经安装并运行 OpenClaw 的机器。
 
+## 预览
+
+![mallocaiconf overview](assets/screenshot-overview.png)
+
+![mallocaiconf dialogue](assets/screenshot-dialogue.png)
+
 ## 准备
 
 先准备这 3 项：
