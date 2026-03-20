@@ -51,6 +51,14 @@
 
 ## 启动
 
+先进入项目目录：
+
+```bash
+cd /path/to/mallocaiconf
+```
+
+前台启动：
+
 ```bash
 node server.mjs
 ```
@@ -65,6 +73,24 @@ http://localhost:4317
 
 ```bash
 MALLOCAICONF_PORT=4321 node server.mjs
+```
+
+后台启动：
+
+```bash
+nohup node server.mjs >/tmp/mallocaiconf.log 2>&1 &
+```
+
+后台启动并换端口：
+
+```bash
+nohup env MALLOCAICONF_PORT=4321 node server.mjs >/tmp/mallocaiconf.log 2>&1 &
+```
+
+查看日志：
+
+```bash
+tail -f /tmp/mallocaiconf.log
 ```
 
 ## 使用
