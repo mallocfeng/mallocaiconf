@@ -18,6 +18,13 @@
 2. 已经拿到 Gateway 的 WS token
 3. `~/.openclaw/openclaw.json` 已允许本地页面连入
 
+## 获取项目
+
+```bash
+git clone https://github.com/mallocfeng/mallocaiconf.git
+cd mallocaiconf
+```
+
 ## openclaw.json 示例
 
 把下面内容合并进 `~/.openclaw/openclaw.json`：
@@ -60,12 +67,6 @@ openclaw gateway restart
 ```
 
 ## 启动
-
-先进入项目目录：
-
-```bash
-cd /path/to/mallocaiconf
-```
 
 前台启动：
 
