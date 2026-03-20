@@ -40,20 +40,20 @@ body {
   position: relative;
   width: min(1440px, calc(100vw - 40px));
   margin: 0 auto;
-  padding: 26px 0 56px;
+  padding: 10px 0 56px;
 }
 
 .hero {
   display: grid;
-  gap: 6px;
-  margin-bottom: 18px;
+  gap: 4px;
+  margin-bottom: 12px;
 }
 
 .hero-topline {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 18px;
+  gap: 12px;
 }
 
 .eyebrow {
@@ -103,7 +103,7 @@ body {
 .hero h1 {
   margin: 0;
   font-size: clamp(42px, 8vw, 88px);
-  line-height: 0.94;
+  line-height: 0.91;
   letter-spacing: -0.05em;
 }
 
