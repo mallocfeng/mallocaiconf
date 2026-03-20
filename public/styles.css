@@ -40,13 +40,13 @@ body {
   position: relative;
   width: min(1440px, calc(100vw - 40px));
   margin: 0 auto;
-  padding: 48px 0 56px;
+  padding: 26px 0 56px;
 }
 
 .hero {
   display: grid;
-  gap: 10px;
-  margin-bottom: 28px;
+  gap: 6px;
+  margin-bottom: 18px;
 }
 
 .hero-topline {
@@ -112,7 +112,7 @@ body {
   max-width: 760px;
   color: var(--muted);
   font-size: 18px;
-  line-height: 1.5;
+  line-height: 1.42;
 }
 
 .layout {
