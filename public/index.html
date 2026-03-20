@@ -52,7 +52,22 @@
                 <input id="ws-url" type="text" value="ws://127.0.0.1:18789" />
               </label>
               <label>
-                <span data-i18n="connection.token">Gateway token</span>
+                <span class="label-inline">
+                  <span data-i18n="connection.token">Gateway token</span>
+                  <span class="token-help">
+                    <button
+                      class="token-help-button"
+                      type="button"
+                      aria-label="Token help"
+                      data-i18n-aria-label="connection.tokenHelpAria"
+                    >
+                      !
+                    </button>
+                    <span class="token-help-tooltip" data-i18n="connection.tokenHelp">
+                      Go to ~/.openclaw/openclaw.json and read gateway.auth.token. After changing config, run openclaw gateway restart.
+                    </span>
+                  </span>
+                </span>
                 <input id="ws-token" type="password" placeholder="Paste token" data-i18n-placeholder="placeholder.token" />
               </label>
             </div>

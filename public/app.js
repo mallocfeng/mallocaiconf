@@ -78,6 +78,8 @@ const MESSAGES = {
     "connection.title": "Gateway 连接",
     "connection.wsUrl": "Gateway WS 地址",
     "connection.token": "Gateway Token",
+    "connection.tokenHelp": "去 ~/.openclaw/openclaw.json 里查找 gateway.auth.token。修改配置后记得执行 openclaw gateway restart。",
+    "connection.tokenHelpAria": "如何获取 Gateway Token",
     "connection.protocol": "协议",
     "connection.server": "服务端",
     "connection.agents": "Agents",
@@ -181,6 +183,8 @@ const MESSAGES = {
     "connection.title": "Gateway Link",
     "connection.wsUrl": "Gateway WS URL",
     "connection.token": "Gateway Token",
+    "connection.tokenHelp": "Open ~/.openclaw/openclaw.json and read gateway.auth.token. If you changed config, run openclaw gateway restart.",
+    "connection.tokenHelpAria": "How to find the Gateway token",
     "connection.protocol": "Protocol",
     "connection.server": "Server",
     "connection.agents": "Agents",
@@ -322,6 +326,9 @@ function applyStaticTranslations() {
   }
   for (const node of document.querySelectorAll("[data-i18n-placeholder]")) {
     node.setAttribute("placeholder", t(node.dataset.i18nPlaceholder));
+  }
+  for (const node of document.querySelectorAll("[data-i18n-aria-label]")) {
+    node.setAttribute("aria-label", t(node.dataset.i18nAriaLabel));
   }
   syncDefaultAgentLabels();
   updateLocaleButtons();
