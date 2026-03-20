@@ -107,6 +107,11 @@ body {
   margin-bottom: 18px;
 }
 
+.panel-head > :first-child {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
 .panel-head h2,
 .panel-head h3 {
   margin: 0;
@@ -116,7 +121,9 @@ body {
 .button-row {
   display: flex;
   gap: 10px;
-  flex-wrap: wrap;
+  flex: none;
+  flex-wrap: nowrap;
+  align-items: center;
 }
 
 label {
