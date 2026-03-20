@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mallocaiconf | Gateway Relay Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@400;500;700&family=Bricolage+Grotesque:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="backdrop"></div>
+    <main class="shell">
+      <section class="hero">
+        <p class="eyebrow">mallocaiconf</p>
+        <h1>Gateway Relay Studio</h1>
+        <p class="lede">
+          Connect directly to your installed OpenClaw Gateway over WebSocket, choose any two
+          agents, and orchestrate a multi-round exchange in the browser.
+        </p>
+      </section>
+
+      <section class="layout">
+        <div class="stack">
+          <section class="panel connection-panel">
+            <div class="panel-head">
+              <div>
+                <h2>Gateway Link</h2>
+                <p id="connection-state" class="status-line">Disconnected.</p>
+              </div>
+              <div class="button-row">
+                <button id="connect-button" class="primary" type="button">Connect</button>
+                <button id="disconnect-button" class="ghost" type="button" disabled>
+                  Disconnect
+                </button>
+              </div>
+            </div>
+
+            <div class="grid two">
+              <label>
+                <span>Gateway WS URL</span>
+                <input id="ws-url" type="text" value="ws://127.0.0.1:18789" />
+              </label>
+              <label>
+                <span>Gateway token</span>
+                <input id="ws-token" type="password" placeholder="Paste token" />
+              </label>
+            </div>
+
+            <div class="stats compact">
+              <article>
+                <span>Protocol</span>
+                <strong id="protocol-value">-</strong>
+              </article>
+              <article>
+                <span>Server</span>
+                <strong id="server-version">-</strong>
+              </article>
+              <article>
+                <span>Agents</span>
+                <strong id="agent-count">0</strong>
+              </article>
+            </div>
+          </section>
+
+          <form id="relay-form" class="panel composer">
+            <div class="panel-head">
+              <div>
+                <h2>Dialogue Design</h2>
+                <p class="status-line">Models come from your existing OpenClaw config.</p>
+              </div>
+              <div class="button-row">
+                <button id="start-button" class="primary" type="submit" disabled>
+                  Start Relay
+                </button>
+                <button id="stop-button" class="ghost" type="button" disabled>Stop After Turn</button>
+              </div>
+            </div>
+
+            <div class="grid two">
+              <label>
+                <span>Opening speaker</span>
+                <select id="opening-speaker">
+                  <option value="a">Agent A starts</option>
+                  <option value="b">Agent B starts</option>
+                </select>
+              </label>
+              <label>
+                <span>Round count</span>
+                <input id="round-count" type="number" min="1" max="40" value="6" />
+              </label>
+            </div>
+
+            <label>
+              <span>Conversation kickoff</span>
+              <textarea
+                id="opening-prompt"
+                rows="5"
+                placeholder="Example: Debate whether a local WS-first orchestration panel should replace Telegram-driven coordination."
+              ></textarea>
+            </label>
+
+            <label>
+              <span>Stop phrase</span>
+              <input
+                id="stop-phrase"
+                type="text"
+                placeholder="Optional. If an agent says this, the relay halts."
+              />
+            </label>
+
+            <div class="agent-columns">
+              <section class="agent-card" data-side="a">
+                <p class="agent-chip">A</p>
+                <h3>Agent A</h3>
+                <label>
+                  <span>Choose agent</span>
+                  <select id="agent-a" disabled></select>
+                </label>
+                <label>
+                  <span>Display label</span>
+                  <input id="agent-a-label" type="text" value="Strategist" />
+                </label>
+                <label>
+                  <span>Identity prompt</span>
+                  <textarea
+                    id="agent-a-identity"
+                    rows="4"
+                    placeholder="Example: You are skeptical, concise, and risk-focused."
+                  ></textarea>
+                </label>
+                <label>
+                  <span>Objective</span>
+                  <textarea
+                    id="agent-a-objective"
+                    rows="3"
+                    placeholder="What should Agent A optimize for?"
+                  ></textarea>
+                </label>
+                <label>
+                  <span>Style guidance</span>
+                  <textarea
+                    id="agent-a-style"
+                    rows="3"
+                    placeholder="Example: Ask one sharper follow-up each turn."
+                  ></textarea>
+                </label>
+              </section>
+
+              <section class="agent-card" data-side="b">
+                <p class="agent-chip">B</p>
+                <h3>Agent B</h3>
+                <label>
+                  <span>Choose agent</span>
+                  <select id="agent-b" disabled></select>
+                </label>
+                <label>
+                  <span>Display label</span>
+                  <input id="agent-b-label" type="text" value="Builder" />
+                </label>
+                <label>
+                  <span>Identity prompt</span>
+                  <textarea
+                    id="agent-b-identity"
+                    rows="4"
+                    placeholder="Example: You are implementation-driven and concrete."
+                  ></textarea>
+                </label>
+                <label>
+                  <span>Objective</span>
+                  <textarea
+                    id="agent-b-objective"
+                    rows="3"
+                    placeholder="What should Agent B optimize for?"
+                  ></textarea>
+                </label>
+                <label>
+                  <span>Style guidance</span>
+                  <textarea
+                    id="agent-b-style"
+                    rows="3"
+                    placeholder="Example: End with one actionable recommendation."
+                  ></textarea>
+                </label>
+              </section>
+            </div>
+          </form>
+        </div>
+
+        <section class="panel monitor">
+          <div class="panel-head">
+            <div>
+              <h2>Relay Monitor</h2>
+              <p id="relay-state" class="status-line">No run active.</p>
+            </div>
+          </div>
+
+          <section id="conversation-banner" class="conversation-banner idle">
+            <div>
+              <p class="conversation-kicker">Conversation Status</p>
+              <h3 id="conversation-title">Waiting to start</h3>
+              <p id="conversation-summary" class="status-line">
+                Connect to your Gateway, choose two agents, then start the exchange.
+              </p>
+            </div>
+            <span id="conversation-badge" class="conversation-badge">Idle</span>
+          </section>
+
+          <div class="stats">
+            <article>
+              <span>Run ID</span>
+              <strong id="run-id">None</strong>
+            </article>
+            <article>
+              <span>Turns</span>
+              <strong id="turn-count">0</strong>
+            </article>
+            <article>
+              <span>Last agent</span>
+              <strong id="last-agent">Waiting</strong>
+            </article>
+          </div>
+
+          <div id="timeline" class="timeline chat-log">
+            <div class="empty-state">
+              <p>No conversation yet.</p>
+              <p>Connect to your Gateway, load the agents, and start a dialogue.</p>
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <template id="turn-template">
+      <article class="turn-card chat-message">
+        <div class="turn-avatar">
+          <span class="turn-avatar-letter"></span>
+        </div>
+        <div class="turn-bubble">
+        <header>
+          <div class="turn-meta">
+            <span class="turn-agent"></span>
+            <span class="turn-agent-id"></span>
+          </div>
+          <span class="turn-duration"></span>
+        </header>
+        <p class="turn-text"></p>
+        </div>
+      </article>
+    </template>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+  </html>
