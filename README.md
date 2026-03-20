@@ -6,9 +6,9 @@
 
 ## 预览
 
-![mallocaiconf overview](assets/screenshot-overview.png)
+![mallocaiconf preview 1](assets/preview-1.png)
 
-![mallocaiconf dialogue](assets/screenshot-dialogue.png)
+![mallocaiconf preview 2](assets/preview-2.png)
 
 ## 准备
 
